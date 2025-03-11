@@ -1,0 +1,45 @@
+# syntax=docker/dockerfile:1-labs
+FROM rocker/shiny:4.4.1
+
+# Remove orignial shiny server dir
+RUN rm -rf /srv/shiny-server
+
+# Set working director
+WORKDIR /srv/shiny-server/eva
+
+# Install system requirements for index.R as needed
+RUN apt-get update && apt-get install -y \
+    --no-install-recommends \
+    git-core \
+    libssl-dev \
+    libcurl4-gnutls-dev \
+    curl \
+    libsodium-dev \
+    libxml2-dev \
+    libicu-dev \
+    libharfbuzz-dev \
+    libfribidi-dev \
+    libfreetype6-dev \
+    libpng-dev \
+    libtiff5-dev \
+    libjpeg-dev \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install renv
+RUN R -e "install.packages('renv', repos = c(CRAN = 'https://cloud.r-project.org'))"
+
+# Copy renv.lock
+COPY renv.lock renv.lock
+
+# Copy the renv auto-loader tools
+RUN mkdir -p renv
+COPY .Rprofile .Rprofile
+COPY renv/activate.R renv/activate.R
+
+# Change default location of cache to project folder
+RUN mkdir renv/.cache
+ENV RENV_PATHS_CACHE=renv/.cache
+
+# Restore packages
+RUN R -e "renv::restore()"

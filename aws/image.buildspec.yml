@@ -1,0 +1,11 @@
+version: 0.2
+
+phasese:
+  build:
+    commands:
+      - cd aws/scripts
+      - chmod +x push-image.sh
+      - ./push-image.sh $IMAGE_TYPE
+  post_build:
+    commands:
+      - echo Build completed on `date`
