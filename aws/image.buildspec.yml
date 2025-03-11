@@ -3,9 +3,8 @@ version: 0.2
 phases:
   build:
     commands:
-      - cd aws/scripts
-      - chmod +x push-image.sh
-      - ./push-image.sh $IMAGE_TYPE
+      - chmod +x ./aws/scripts/push-image.sh
+      - ./aws/scripts/push-image.sh $IMAGE_TYPE
   post_build:
     commands:
       - echo Build completed on `date`
