@@ -8,6 +8,7 @@ RUN sudo apt-get update && sudo apt-get upgrade -y
 # Environment variables
 ARG APP_ENV
 ENV APP_ENV=$APP_ENV
+ENV SHINY_LOG_STDERR=1
 
 WORKDIR /srv/shiny-server/eva
 
