@@ -39,6 +39,7 @@ tests/testthat/_snaps/**/*.png
 www/client-level-export-data-dictionary.csv
 .Renviron
 <<<<<<< Updated upstream
+=======
 sandbox/update-FY24-ICF-good-to-FY26.R
 .Rprofile
 00_initially_valid_import.R
