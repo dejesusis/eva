@@ -1001,10 +1001,16 @@ function(input, output, session) {
   session$onSessionEnded(function() {
     message(paste0("Session ", session$token, " ended at ", Sys.time()))
     gc()
+<<<<<<< Updated upstream
     if (session$userData$session_ended_by_idle_timeout) {
       logMetadata("Session ended due to idle timeout.")
     } else {
       logMetadata("Session ended unexpectedly.")
     }
+=======
+    cat(paste0("Session ", session$token, " ended at ", Sys.time()))
+    logMetadata(session, "Session Ended")
+    stopApp()
+>>>>>>> Stashed changes
   })
 }

@@ -49,10 +49,17 @@ is_hashed <- function() {
   
   # decide if the export is hashed
   return(  
+<<<<<<< Updated upstream
     # TRUE
     Export()$HashStatus == 4 &
       min(nchar(Client$FirstName), na.rm = TRUE) ==
       max(nchar(Client$FirstName), na.rm = TRUE)
+=======
+    TRUE
+  #  session$userData$Export$HashStatus == 4 &
+  #    min(nchar(session$userData$Client$FirstName), na.rm = TRUE) ==
+  #    max(nchar(session$userData$Client$FirstName), na.rm = TRUE)
+>>>>>>> Stashed changes
   )
 }
 

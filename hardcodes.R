@@ -380,3 +380,118 @@ sys_chart_title_font <- sys_axis_text_font # 16 pts
 sys_chart_export_font_reduction <- 0.7
 ppt_summary_slide_font <- 19 # 19 pts = 25px
 ppt_chart_title_font_size <- 36
+<<<<<<< Updated upstream
+=======
+
+# Upload-specific static variables shared across session --------------------
+# These are variables/datasets shared outside the process_upload scope
+sessionVars <- c(
+  "validation", 
+  "Export", 
+  "initially_valid_import",
+  "valid_file", 
+  "file_structure_analysis_main", 
+  "Project0", 
+  "Client",
+  "ReportStart", 
+  "ReportEnd", 
+  "days_of_data",
+  "meta_HUDCSV_Export_Start", 
+  "meta_HUDCSV_Export_End", 
+  "meta_HUDCSV_Export_Date", 
+  "overlap_details",
+  "dq_main", 
+  "outstanding_referrals",
+  "pdde_main", 
+  "dq_pdde_mirai_complete",
+  "enrollment_categories",
+  "client_categories",
+  "lh_non_res",
+  "lh_nbn"
+)
+
+reactive_session_vars <- c(
+  "valid_file", 
+  "initially_valid_import", 
+  "file_structure_analysis_main", 
+  "dq_pdde_mirai_complete"
+)
+
+# environment depencies for DQ and PDDE mirai
+dq_mirai_dependencies <- c(
+  "Enrollment",
+  "Client",
+  "ProjectSegments",
+  "HealthAndDV",
+  "CurrentLivingSituation",
+  "projects_funders_types",
+  "Funder",
+  "IncomeBenefits",
+  "Services",
+  "Event"
+)
+
+pdde_mirai_dependencies <- c(
+  "Inventory",
+  "Enrollment",
+  "ProjectCoC",
+  "activeInventory",
+  "HMISParticipation",
+  "CEParticipation"
+)
+
+enrollment_cols <- c(
+  "PersonalID",
+  "EnrollmentID",
+  "ProjectType",
+  "EntryDate",
+  "MoveInDateAdjust",
+  "ExitAdjust",
+  "lh_prior_livingsituation"
+)
+
+non_res_lh_cols <- c(
+  "InformationDate",
+  "DateProvided"
+)
+
+inflow_debug_cols <- c(
+  "PersonalID",
+  "period",
+  "EnrollmentID",
+  "ProjectType",
+  "EntryDate",
+  "MoveInDateAdjust",
+  "ExitAdjust",
+  "InflowTypeDetail",
+  "lh_dates"
+)
+
+
+outflow_debug_cols <- c(
+  "PersonalID",
+  "period",
+  "EnrollmentID",
+  "ProjectType",
+  "EntryDate",
+  "MoveInDateAdjust",
+  "ExitAdjust",
+  "OutflowTypeDetail",
+  "lh_dates"
+)
+
+## files included in DQ Export Interface
+dq_file_options <- data.frame(
+  all = "All Data Quality Reports",
+  report = c("Project Dashboard Report", "PDDE Report", "Data Quality Report")#, "Bed & Unit Utilization Report")
+)
+
+IN_DEV_MODE <- grepl("ad.abt.local", Sys.info()[["nodename"]]) & !isTRUE(getOption("shiny.testmode"))
+
+METADATA_PATH <- ifelse(
+  grepl("ad.abt.local", Sys.info()[["nodename"]]) | isTRUE(getOption("shiny.testmode")), 
+  here("metadata-analysis/metadata"), 
+  glue::glue("{dirname(here())}/eva/metadata-analysis/metadata")
+)
+#/srv/shiny-efs/{basename(here())} better used with dirname
+>>>>>>> Stashed changes
